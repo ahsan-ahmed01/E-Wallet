@@ -1,0 +1,60 @@
+ <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <View style={styles.body}>
+            <RNCameraBasic
+              open={openCamera}
+              handleToggle={() => {
+                setOpenCamera(!openCamera);
+              }}
+            />
+            <ImagePickerBar
+              open={openGalery}
+              handleToggle={() => {
+                setOpenGalery(!openGalery);
+              }}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}>
+        <View style={{margin: 10}}>
+          <RoundedButton
+            text={'Open Camera'}
+            handleClick={() => {
+              setOpenCamera(!openCamera);
+            }}
+          />
+        </View>
+
+        <View style={{margin: 10}}>
+          <RoundedButton
+            text={'Open image galery'}
+            handleClick={() => {
+              setOpenGalery(!openGalery);
+            }}
+          />
+        </View>
+        <View style={{margin: 10}}>
+          <RoundedButton
+            text={'text Recognition'}
+            handleClick={() => {
+              const localFile = `${
+                utils.FilePath.EXTERNAL_STORAGE_DIRECTORY
+              }/Download/images.jpeg`;
+
+              processDocument(localFile).then(() =>
+                console.log('Finished processing file.'),
+              );
+            }}
+          />
+        </View>
+      </View>
